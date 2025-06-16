@@ -12,7 +12,7 @@ const Hero = () => {
           className="text-xl md:text-2xl mb-8 text-gray-300 animate-fadeIn"
           data-aos="fade-up"
         >
-          A Passionate Developer & Designer
+          A Passionate Technologist
         </p>
         <a
           href="#about"
