@@ -36,16 +36,16 @@ const Contact = () => {
 
     try {
       await emailjs.send(
-        "service_ctm18n1", 
-        "template_nbnatfr", 
+        process.env.REACT_APP_EMAILJS_SERVICE_ID, 
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         {
           from_name: formData.name,
           to_name: "Nikunj",
           from_email: formData.email,
-          to_email: "nikunjsachdeva0@gmail.com", 
+          to_email: process.env.REACT_APP_EMAILJS_TO_EMAIL, 
           message: formData.message,
         },
-        "3uZ5hUy8bLGQqFAu4" 
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
       );
       
       setIsLoading(false);
