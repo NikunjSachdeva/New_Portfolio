@@ -187,6 +187,39 @@ const Projects = () => {
                     {activeProject === project.id ? 'Show Less' : 'Read More'}
                   </motion.button>
                 </motion.div>
+                {project.note && (
+                  <motion.p 
+                    className="italic text-yellow-400 mb-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {project.note}
+                  </motion.p>
+                )}
+                <div className="flex gap-4">
+                  <motion.a 
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="button-hover px-4 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 flex-1 text-center"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    GitHub
+                  </motion.a>
+                  {project.liveLink && (
+                    <motion.a 
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="button-hover px-4 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 flex-1 text-center"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Live
+                    </motion.a>
+                  )}
                 </div>
               </div>
             </motion.div>
