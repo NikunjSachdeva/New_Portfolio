@@ -109,7 +109,7 @@ export function Navbar() {
       />
       <FloatingDock
         desktopClassName="fixed top-4 right-4 z-50"
-        mobileClassName="fixed top-4 right-4 z-50"
+        mobileClassName="fixed bottom-4 left-4 z-50"
         items={socialLinks}
       />
     </>
