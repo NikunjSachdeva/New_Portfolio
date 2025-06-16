@@ -142,51 +142,51 @@ const Projects = () => {
                 >
                   {project.title}
                 </motion.h5>
-                <motion.p 
-                  className={`text-gray-400 mb-4 ${activeProject === project.id ? 'block' : 'line-clamp-3'}`}
+                <motion.div 
+                  className="relative"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {Array.isArray(project.description) 
-                    ? project.description.map((desc, index) => (
-                        <span key={index} className="block mb-2">{desc}</span>
-                      ))
-                    : project.description}
-                </motion.p>
-                {project.note && (
-                  <motion.p 
-                    className="italic text-yellow-400 mb-4"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
+                  <motion.div 
+                    className="text-gray-400 mb-4 cursor-pointer"
+                    initial={false}
+                    animate={{ 
+                      height: activeProject === project.id ? "auto" : "4.5rem",
+                      overflow: "hidden"
+                    }}
+                    transition={{ 
+                      duration: 0.3,
+                      ease: "easeInOut"
+                    }}
+                    onClick={() => toggleProject(project.id)}
                   >
-                    {project.note}
-                  </motion.p>
-                )}
-                <div className="flex gap-4">
-                  <motion.a 
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="button-hover px-4 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 flex-1 text-center"
+                    {Array.isArray(project.description) 
+                      ? project.description.map((desc, index) => (
+                          <motion.span 
+                            key={index} 
+                            className="block mb-2"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ 
+                              opacity: 1, 
+                              y: 0,
+                              transition: { delay: index * 0.1 }
+                            }}
+                          >
+                            {desc}
+                          </motion.span>
+                        ))
+                      : project.description}
+                  </motion.div>
+                  <motion.button 
+                    onClick={() => toggleProject(project.id)}
+                    className="text-yellow-400 hover:text-yellow-300 text-sm font-medium transition-colors duration-300"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    GitHub
-                  </motion.a>
-                  {project.liveLink && (
-                    <motion.a 
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="button-hover px-4 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 flex-1 text-center"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Live
-                    </motion.a>
-                  )}
+                    {activeProject === project.id ? 'Show Less' : 'Read More'}
+                  </motion.button>
+                </motion.div>
                 </div>
               </div>
             </motion.div>
