@@ -12,12 +12,11 @@ A fully responsive personal portfolio website built using **React** and **Tailwi
 - 📱 Mobile-first, responsive design
 - 💬 Contact form section (using EmailJS)
 
-
 ## 📸 Demo
 
-[Click here to view the live site](https://your-portfolio-link.com](https://nikunj-sachdeva.vercel.app/)
+🔗 [Click here to view the live site](https://nikunj-sachdeva.vercel.app/)
 
 ## 🛠️ Tech Stack
 
 - **Frontend:** React, Tailwind CSS, JavaScript (ES6+)
-- **Deployment:** GitHub Pages / Vercel / Netlify (choose one)
+- **Deployment:** Vercel
