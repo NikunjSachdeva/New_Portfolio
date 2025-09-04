@@ -6,6 +6,16 @@ const Projects = () => {
 
   const projects = [
     {
+      id: 10,
+      title: 'Mini-RAG Pro',
+      image: '/assets/RAG.png',
+      description: ['A high-performance, citation-aware RAG backend powered by Pinecone, Google Gemini, and Cohere Rerank — with async processing, caching, reranking, and a beautiful Gradio UI.'
+],
+      note: '',
+      githubLink: 'https://github.com/NikunjSachdeva/Mini-rag',
+      liveLink: 'https://huggingface.co/spaces/Nikunj-sachdeva/mini-rag'
+    },
+    {
       id: 9,
       title: 'DevTok (Social Media Platform for Developers)',
       image: '/assets/DevTok.png',
