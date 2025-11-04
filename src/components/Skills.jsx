@@ -5,7 +5,7 @@ const Skills = () => {
     'CLOUD(GCP, AWS etc)',
     'PYTHON(FastAPI)',
     'MACHINE/DEEP LEARNING',
-    'REACTJS',
+    'REACT.JS',
     'COMPUTER VISION',
     'NATURAL LANGUAGE PROCESSING'
   ];
