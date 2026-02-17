@@ -24,7 +24,7 @@ const Projects = () => {
 'Designed a clean interface in React to display uploaded snippets, embed video previews, show comments, and leveraged LLMs API to generate theory/codebased quizzes and video explanations in simplest terms. ',
 ],
       note: '',
-      // githubLink: 'https://github.com/StyleSens-AI',
+      githubLink: 'https://github.com/NikunjSachdeva/DevTok',
       // liveLink: 'https://stylesens-ai-demo.com'
     },
     {
