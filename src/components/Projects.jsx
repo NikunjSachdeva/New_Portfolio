@@ -6,6 +6,17 @@ const Projects = () => {
 
   const projects = [
     {
+      id: 11,
+      title: 'CodePulse — Automated Documentation Bot',
+      image: '/assets/RAG.png',
+      description: [
+        'LLM-powered CLI tool that automatically generates and publishes XHTML-compliant wiki pages to Confluence from C++ source changes, eliminating manual documentation bottlenecks for 100+ engineers.',
+        'Achieved 100% XHTML validation success rate and 98% reduction in documentation turnaround time through SHA-based incremental caching and automated HTML sanitization.'
+      ],
+      note: '',
+      githubLink: 'https://github.com/NikunjSachdeva/CodePulse',
+    },
+    {
       id: 10,
       title: 'Mini-RAG Pro',
       image: '/assets/RAG.png',

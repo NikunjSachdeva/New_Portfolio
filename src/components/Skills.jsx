@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 
 const Skills = () => {
   const skills = [
-    'CLOUD(GCP, AWS etc)',
-    'PYTHON(FastAPI)',
-    'MACHINE/DEEP LEARNING',
-    'REACT.JS',
-    'COMPUTER VISION',
-    'NATURAL LANGUAGE PROCESSING'
+    'Python',
+    'Machine Learning & Deep Learning',
+    'Generative AI, LLMs & RAG',
+    'NLP & Computer Vision',
+    'FastAPI & React.js',
+    'Cloud & DevOps (GCP, AWS)',
   ];
 
   return (

@@ -18,15 +18,14 @@ const About = () => {
           </div>
           <div className="w-full lg:w-2/3" data-aos="fade-left">
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              Hi, I'm Nikunj Sachdeva, a 4th year Computer Science Engineering student specializing in Artificial
-              Intelligence and Machine Learning at Manipal University Jaipur. I'm passionate about leveraging technology
-              to create innovative solutions, particularly in Deep Learning and Natural Language Processing. I thrive on
-              the satisfaction of seeing my projects come to life and function effectively, which drives my motivation to
-              tackle complex challenges. I am currently working on a solo application based project that uses Python(FastAPI) 
-              as backend and Reactjs as frontend, a full stack Social Media Platform for developers with code sharing, explaining 
-              videos/snippets and much more. My goal is to contribute to impactful projects that shape the future of technology and positively impact society.
-              I am dedicated to continuously expanding my skills
-              and knowledge to achieve this.
+              Hi, I'm Nikunj Sachdeva, a Computer Science Engineering graduate (AI/ML) from Manipal University Jaipur
+              (Class of 2026). I recently completed a Technical Internship at Siemens STSPL in Bengaluru, where I built
+              CodePulse — an LLM-powered CLI tool that auto-generates XHTML-compliant Confluence documentation from C++
+              source code, cutting documentation turnaround by 98%. I'm passionate about Generative AI, Large Language
+              Models, and building full-stack applications that solve real engineering problems. My work spans RAG
+              pipelines, deep learning systems, and developer-focused platforms, always driven by a focus on performance
+              and practical impact. I'm dedicated to continuously pushing the boundaries of what AI can do in
+              production environments.
             </p>
           </div>
         </div>
