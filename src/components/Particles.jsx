@@ -146,7 +146,7 @@ export const Particles = ({
       canvasRef.current.style.height = `${canvasSize.current.h}px`;
       context.current.scale(dpr, dpr);
 
-      
+
       circles.current = [];
       for (let i = 0; i < quantity; i++) {
         const circle = circleParams();
@@ -224,10 +224,12 @@ export const Particles = ({
     return remapped > 0 ? remapped : 0;
   };
 
-  // Add frame limiting property to animate function
-animate.lastFrameTime = 0;
+  const animate = () => {
+    // Initialize frame limiting property on first call
+    if (animate.lastFrameTime === undefined) {
+      animate.lastFrameTime = 0;
+    }
 
-const animate = () => {
     // Add frame limiting for iOS
     const now = performance.now();
     if (!rafID.current) {
