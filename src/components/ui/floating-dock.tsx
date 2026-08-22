@@ -76,14 +76,14 @@ const FloatingDockDesktop = ({
   items,
   className
 }) => {
-  const mouseXRef = useRef(Infinity);
+  const mouseX = useMotionValue(Infinity);
   const lastUpdate = useRef(0);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     const now = Date.now();
     // Throttle to 30fps max for iOS performance
     if (now - lastUpdate.current > 33) {
-      mouseXRef.current = e.pageX;
+      mouseX.set(e.pageX);
       lastUpdate.current = now;
     }
   }, []);
@@ -94,7 +94,7 @@ const FloatingDockDesktop = ({
     if (now - lastUpdate.current > 33) {
       const touch = e.touches[0];
       if (touch) {
-        mouseXRef.current = touch.pageX;
+        mouseX.set(touch.pageX);
         lastUpdate.current = now;
       }
     }
@@ -113,13 +113,13 @@ const FloatingDockDesktop = ({
   return (
     <motion.div
       onMouseMove={(e) => handleMouseMove(e)}
-      onMouseLeave={() => mouseXRef.current = Infinity}
+      onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
         "mx-auto hidden h-16 items-end gap-4 rounded-2xl bg-gray-50 px-4 pb-3 md:flex dark:bg-neutral-900",
         className
       )}>
       {items.map((item) => (
-        <IconContainer mouseX={mouseXRef.current} key={item.title} {...item} />
+        <IconContainer mouseX={mouseX} key={item.title} {...item} />
       ))}
     </motion.div>
   );
