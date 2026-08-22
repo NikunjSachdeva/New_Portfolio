@@ -9,7 +9,7 @@ import { cn } from '../../lib/utils';
 import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 
 export const FloatingDock = ({
   items,
@@ -76,17 +76,50 @@ const FloatingDockDesktop = ({
   items,
   className
 }) => {
-  let mouseX = useMotionValue(Infinity);
+  const mouseXRef = useRef(Infinity);
+  const lastUpdate = useRef(0);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    const now = Date.now();
+    // Throttle to 30fps max for iOS performance
+    if (now - lastUpdate.current > 33) {
+      mouseXRef.current = e.pageX;
+      lastUpdate.current = now;
+    }
+  }, []);
+
+  // ADD TOUCH SUPPORT
+  const handleTouchMove = useCallback((e: TouchEvent) => {
+    const now = Date.now();
+    if (now - lastUpdate.current > 33) {
+      const touch = e.touches[0];
+      if (touch) {
+        mouseXRef.current = touch.pageX;
+        lastUpdate.current = now;
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, [handleMouseMove, handleTouchMove]);
+
   return (
     <motion.div
-      onMouseMove={(e) => mouseX.set(e.pageX)}
-      onMouseLeave={() => mouseX.set(Infinity)}
+      onMouseMove={(e) => handleMouseMove(e)}
+      onMouseLeave={() => mouseXRef.current = Infinity}
       className={cn(
         "mx-auto hidden h-16 items-end gap-4 rounded-2xl bg-gray-50 px-4 pb-3 md:flex dark:bg-neutral-900",
         className
       )}>
       {items.map((item) => (
-        <IconContainer mouseX={mouseX} key={item.title} {...item} />
+        <IconContainer mouseX={mouseXRef.current} key={item.title} {...item} />
       ))}
     </motion.div>
   );

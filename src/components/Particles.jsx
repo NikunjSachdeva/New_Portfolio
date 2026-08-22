@@ -6,16 +6,33 @@ function MousePosition() {
     x: 0,
     y: 0,
   });
+  const lastUpdate = useRef(0);
 
   useEffect(() => {
-    const handleMouseMove = (event) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
+    const handleMove = (event) => {
+      const now = Date.now();
+      // Throttle to 30fps max for iOS performance
+      if (now - lastUpdate.current > 33) {
+        let clientX = 0, clientY = 0;
+        if (event.type === 'touchmove' && event.touches) {
+          const touch = event.touches[0];
+          clientX = touch.clientX;
+          clientY = touch.clientY;
+        } else {
+          clientX = event.clientX;
+          clientY = event.clientY;
+        }
+        setMousePosition({ x: clientX, y: clientY });
+        lastUpdate.current = now;
+      }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMove, { passive: true });
+    window.addEventListener("touchmove", handleMove, { passive: true });
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousemove", handleMove);
+      window.removeEventListener("touchmove", handleMove);
     };
   }, []);
 
@@ -207,7 +224,27 @@ export const Particles = ({
     return remapped > 0 ? remapped : 0;
   };
 
-  const animate = () => {
+  // Add frame limiting property to animate function
+animate.lastFrameTime = 0;
+
+const animate = () => {
+    // Add frame limiting for iOS
+    const now = performance.now();
+    if (!rafID.current) {
+      rafID.current = requestAnimationFrame(animate);
+      return;
+    }
+
+    // Limit to 30fps max on iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const minFrameTime = isIOS ? 33 : 16; // 30fps for iOS, 60fps otherwise
+
+    if (now - animate.lastFrameTime < minFrameTime) {
+      rafID.current = requestAnimationFrame(animate);
+      return;
+    }
+    animate.lastFrameTime = now;
+
     clearContext();
     circles.current.forEach((circle, i) => {
       // Handle the alpha value

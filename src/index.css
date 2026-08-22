@@ -148,3 +148,28 @@ html {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* iOS-specific optimizations */
+@supports (-webkit-touch-callout: none) {
+  /* Reduce animation complexity on iOS */
+  .Particles {
+    --quantity: 50 !important; /* Reduce from 100 to 50 */
+  }
+
+  /* Disable expensive CSS filters on iOS */
+  * {
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Improve tap responsiveness */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Font smoothing for better readability */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
